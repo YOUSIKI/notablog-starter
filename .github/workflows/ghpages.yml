@@ -19,7 +19,7 @@ jobs:
           path: starter
       - uses: actions/checkout@v3
         with:
-          repository: yousiki/yousiki.github.io
+          repository: YOUSIKI/yousiki.github.io
           ref: master
           path: public
       - uses: actions/setup-node@v3
