@@ -21,7 +21,7 @@ jobs:
         with:
           repository: YOUSIKI/yousiki.github.io
           token: ${{ secrets.GH_PAT }}
-          ref: master
+          ref: main
           path: public
       - uses: actions/setup-node@v3
         with:
