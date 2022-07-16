@@ -1,0 +1,39 @@
+name: Github Pages Update
+
+on:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: master
+          path: starter
+      - uses: actions/checkout@v3
+        with:
+          repository: yousiki/yousiki.github.io
+          ref: master
+          path: public
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: |
+          npm i -g notablog
+          notablog generate starter
+          cp -r starter/public/* public
+          cd public
+          git add .
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git commit -m "ngithub-actions[bot]" -a
+      - uses: ad-m/github-push-action@master
+        with:
+          directory: public
