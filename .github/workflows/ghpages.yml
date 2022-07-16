@@ -38,4 +38,5 @@ jobs:
       - uses: ad-m/github-push-action@master
         with:
           directory: public
+          repository: YOUSIKI/yousiki.github.io
           github_token: ${{ secrets.GH_PAT }}
